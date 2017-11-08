@@ -1,41 +1,40 @@
 import './styles/style.scss'
+var mymap = L.map('mapid', {render: L.svg()}).setView([40.420581,-3.708136], 6)
+var eu = ["BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE","UK"]
+var geojsonMarkerOptions = {
+  radius: 8,
+  fillColor: "#ff7800",
+  color: "#000",
+  weight: 1,
+  opacity: 1,
+  fillOpacity: 0.8
+}
+fetch('https://xavijam.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20ne_10m_populated_places_simple&format=GeoJSON')
+  .then(function(response){
+    if(response.status !== 200){
+      console.log('problem ', response.status)
+      return
+    }
+    response.json().then(function(data){
+      L.geoJSON(data, {
+        pointToLayer: function (feature, latlng) {
+          return L.circleMarker(latlng, geojsonMarkerOptions);
+        },
+        filter: function(feature, layer) {
+          return eu.includes(feature.properties.iso_a2)
+        }
+      }).addTo(mymap)
+    })
+  })
+  .catch(function(err){
+    console.log('Fetch err ', err)
+  })
 
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
 L.tileLayer(
-  'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+  'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
   {
 	  maxZoom: 18,
 	  id: 'mapbox.streets'
   }
-).addTo(mymap);
-
-var marker = L.marker([51.5, -0.09]).addTo(mymap);
-
-var circle = L.circle([51.508, -0.11], {
-  color: 'red',
-  fillColor: '#f03',
-  fillOpacity: 0.5,
-  radius: 500
-}).addTo(mymap);
-var polygon = L.polygon([
-  [51.509, -0.08],
-  [51.503, -0.06],
-  [51.51, -0.047]
-]).addTo(mymap);
-
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-circle.bindPopup("I am a circle.");
-polygon.bindPopup("I am a polygon.");
-
-var popup = L.popup()
-
-function onMapClick(e) {
-  popup
-    .setLatLng(e.latlng)
-    .setContent("You clicked the map at " + e.latlng.toString())
-    .openOn(mymap)
-
-}
-
-mymap.on('click', onMapClick);
+).addTo(mymap)

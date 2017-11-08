@@ -4,6 +4,7 @@
   "description": "a carto test",
   "main": "app.js",
   "scripts": {
+    "start": "webpack",
     "dev": "webpack-dev-server --colors"
   },
   "author": "Me",
