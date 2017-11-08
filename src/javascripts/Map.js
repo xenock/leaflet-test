@@ -1,11 +1,10 @@
-function Map(tileSrc, initMapSettings){
-  this.tileSrc = tileSrc
-  this.coordinates = initMapSettings.coordinates
-  this.zoom = initMapSettings.zoom
-  this._init()
+function Map(tile, initValues){
+  this.tileSrc = tile || 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
+  this.coordinates = initValues.coordinates || [0,0]
+  this.zoom = initValues.zoom || 0
 }
 
-Map.prototype._init = function(){
+Map.prototype.init = function(){
   this._initMap()
   this._setTileLayer()
 }
