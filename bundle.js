@@ -71,9 +71,22 @@
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_style_scss__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_style_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_style_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__javascripts_Map_js__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__javascripts_Map_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__javascripts_Map_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__country_shortnames_js__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__country_shortnames_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__country_shortnames_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__leaflet_tiles_js__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__leaflet_tiles_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__leaflet_tiles_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_queries_js__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_queries_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__data_queries_js__);
 
-var xhr = new XMLHttpRequest()
-var mymap = L.map('mapid', {render: L.svg()}).setView([40.420581,-3.708136], 6)
+
+
+
+
+
+var eumap = new __WEBPACK_IMPORTED_MODULE_1__javascripts_Map_js__["Map"](__WEBPACK_IMPORTED_MODULE_3__leaflet_tiles_js__["cartoDark"], { coordinates: [40.420581,-3.708136], zoom: 6 })
+eumap.init()
 
 var geojsonMarkerOptions = {
   radius: 8,
@@ -83,34 +96,21 @@ var geojsonMarkerOptions = {
   opacity: 1,
   fillOpacity: 0.8
 }
-fetch('https://xavijam.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20ne_10m_populated_places_simple&format=GeoJSON')
+
+fetch(__WEBPACK_IMPORTED_MODULE_4__data_queries_js__["populatedPlaces"])
   .then(function(response){
     if(response.status !== 200){
       console.log('problem ', response.status)
       return
     }
     response.json().then(function(data){
-      L.geoJSON(data, {
-        pointToLayer: function (feature, latlng) {
-          return L.circleMarker(latlng, geojsonMarkerOptions);
-        }
-      }).addTo(mymap)
+      eumap.loadData(data, geojsonMarkerOptions, __WEBPACK_IMPORTED_MODULE_2__country_shortnames_js__["eu"])
     })
+
   })
   .catch(function(err){
     console.log('Fetch err ', err)
   })
-
-
-// var mymap = L.map('mapid').setView([51.505, -0.09], 13)
-
-L.tileLayer(
-  'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
-  {
-	  maxZoom: 18,
-	  id: 'mapbox.streets'
-  }
-).addTo(mymap)
 
 
 /***/ }),
@@ -705,6 +705,70 @@ module.exports = function (css) {
 	// send back the fixed css
 	return fixedCss;
 };
+
+
+/***/ }),
+/* 6 */,
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  eu: ["BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE","UK", "GB"]
+}
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  cartoDark: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png'
+}
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  populatedPlaces: 'https://xavijam.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20ne_10m_populated_places_simple&format=GeoJSON'
+}
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+function Map(tile, initValues){
+  this.tileSrc = tile || 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
+  this.coordinates = initValues.coordinates || [0,0]
+  this.zoom = initValues.zoom || 0
+}
+
+Map.prototype.init = function(){
+  this._initMap()
+  this._setTileLayer()
+}
+
+Map.prototype._initMap = function(){
+  this.mymap = L.map('mapid', {render: L.svg()}).setView(this.coordinates, this.zoom)
+}
+
+Map.prototype._setTileLayer = function(){
+  L.tileLayer(this.tileSrc, {maxZoom: 18,id: 'mapbox.streets'}).addTo(this.mymap)
+}
+
+Map.prototype.loadData = function(data, geojsonMarkerOptions, locations){
+  L.geoJSON(data, {
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng, geojsonMarkerOptions)
+    },
+    filter: function(feature, layer) {
+      return locations.includes(feature.properties.iso_a2)
+    }
+  }).addTo(this.mymap)
+}
+module.exports = { Map }
 
 
 /***/ })
