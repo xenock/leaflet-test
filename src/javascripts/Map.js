@@ -23,7 +23,7 @@ Map.prototype.loadData = function(data, geojsonMarkerOptions, locations){
       return L.circleMarker(latlng, geojsonMarkerOptions)
     },
     filter: function(feature, layer) {
-      return locations.includes(feature.properties.iso_a2)
+      return feature.properties.featurecla === "Admin-0 capital"
     }
   }).addTo(this.mymap)
 }
