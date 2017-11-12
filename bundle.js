@@ -153,7 +153,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "#mapid {\n  height: 500px;\n  width: 1024px; }\n", ""]);
+exports.push([module.i, "body {\n  padding: 0;\n  margin: 0;\n  height: 100vh;\n  display: grid;\n  grid-template-columns: 5% 35% 60%; }\n\n.side-bar {\n  background-color: #1181fb; }\n", ""]);
 
 // exports
 
@@ -755,7 +755,7 @@ Map.prototype._initMap = function(){
 }
 
 Map.prototype._setTileLayer = function(){
-  L.tileLayer(this.tileSrc, {maxZoom: 18,id: 'mapbox.streets'}).addTo(this.mymap)
+  L.tileLayer(this.tileSrc, {maxZoom: 18,id: 'mapbox.dark'}).addTo(this.mymap)
 }
 
 Map.prototype.loadData = function(data, geojsonMarkerOptions, locations){
@@ -764,7 +764,7 @@ Map.prototype.loadData = function(data, geojsonMarkerOptions, locations){
       return L.circleMarker(latlng, geojsonMarkerOptions)
     },
     filter: function(feature, layer) {
-      return locations.includes(feature.properties.iso_a2)
+      return feature.properties.featurecla === "Admin-0 capital"
     }
   }).addTo(this.mymap)
 }
