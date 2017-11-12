@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
@@ -17,7 +18,66 @@
 
   </head>
   <body>
-    <div id="mapid"></div>
+    <aside class="side-bar">
+      <div class="side-bar__carto-logo">
+        <svg width="100" height="100">
+        <circle cx="50" cy="50" r="20" stroke="#419afc" stroke-width="18" fill="white" />
+        Sorry, your browser does not support inline SVG.
+        </svg>
+      </div>
+      <div class="side-bar__option"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+      <div class="side-bar__option"><i class="fa fa-sliders" aria-hidden="true"></i></div>
+    </aside>
+    <section class="steps">
+      <article class="painting-options">
+        <p>Mystery content</p>
+      </article>
+      <article class="painting-style">
+        <header class="painting-style__header">
+          <button>2</button>
+          <h2>Style</h2>
+          <p>CHANGE THE VISUALIZATION</p>
+        </header>
+        <div>
+          <p>FILL</p>
+          <select class="painting-style__fill" id="painting-style__fill" >
+            <option value="#A52A2A">Brown</option>
+            <option value="#DEB887">BurlyWood</option>
+            <option value="#5F9EA0">CadetBlue</option>
+            <option value="#7FFF00">Chartreuse</option>
+            <option value="#D2691E">Chocolate</option>
+            <option value="#FF7F50">Coral</option>
+            <option value="#6495ED">CornflowerBlue</option>
+            <option value="#FFF8DC">Cornsilk</option>
+            <option value="#DC143C">Crimson</option>
+            <option value="#00FFFF">Cyan</option>
+          </select>
+        </div>
+        <div>
+          <p>STROKE</p>
+          <select class="painting-style__stroke" id="painting-style__stroke" >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      </article>
+      <div>
+        <p>BLENDING</p>
+        <select class="painting-style__blending" id="painting-style__blending" >
+          <option value="multiply">multiply</option>
+          <option value="">2</option>
+          <option value="">3</option>
+          <option value="">4</option>
+          <option value="">5</option>
+        </select>
+      </div>
+      <label for="">labels</label>
+      <input class="painting-style__labels"  type="checkbox" value=""/>
+    </section>
+    <section id="mapid"></section>
     <script src="bundle.js"></script>
   </body>
 </html>

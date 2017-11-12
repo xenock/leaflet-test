@@ -8,8 +8,8 @@ var eumap = new Map(cartoDark, { coordinates: [40.420581,-3.708136], zoom: 6 })
 eumap.init()
 
 var geojsonMarkerOptions = {
-  radius: 8,
-  fillColor: "#ff7800",
+  radius: 10,
+  fillColor: "#A52A2A",
   color: "#000",
   weight: 1,
   opacity: 1,
@@ -30,3 +30,24 @@ fetch(populatedPlaces)
   .catch(function(err){
     console.log('Fetch err ', err)
   })
+
+window.onload = function(){
+  var color = document.getElementById('painting-style__fill')
+  var stroke = document.getElementById('painting-style__stroke')
+
+  color.addEventListener('change', function(){
+    var selectedColor = color.options[color.selectedIndex].value
+    var points = document.querySelectorAll('path.leaflet-interactive')
+    points.forEach(function(point){
+      point.setAttribute('fill', selectedColor)
+    })
+  })
+
+  stroke.addEventListener('change', function(){
+    var selectedStroke = stroke.options[stroke.selectedIndex].value
+    var points = document.querySelectorAll('path.leaflet-interactive')
+    points.forEach(function(point){
+      point.setAttribute('stroke-width', selectedStroke)
+    })
+  })
+}
