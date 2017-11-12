@@ -14,7 +14,7 @@ Map.prototype._initMap = function(){
 }
 
 Map.prototype._setTileLayer = function(){
-  L.tileLayer(this.tileSrc, {maxZoom: 18,id: 'mapbox.streets'}).addTo(this.mymap)
+  L.tileLayer(this.tileSrc, {maxZoom: 18,id: 'mapbox.dark'}).addTo(this.mymap)
 }
 
 Map.prototype.loadData = function(data, geojsonMarkerOptions, locations){
