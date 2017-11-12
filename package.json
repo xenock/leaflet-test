@@ -6,17 +6,19 @@
   "scripts": {
     "start": "webpack",
     "dev": "webpack-dev-server --colors",
-    "test": "jasmine"
+    "test": "node_modules/nightwatch/bin/nightwatch"
   },
   "author": "Me",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^0.28.7",
     "jasmine": "^2.8.0",
+    "nightwatch": "^0.9.16",
     "node-sass": "^4.6.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
-  }
+  },
+  "dependencies": {}
 }
