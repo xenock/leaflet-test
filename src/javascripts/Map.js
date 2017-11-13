@@ -24,6 +24,16 @@ Map.prototype.loadData = function(data, geojsonMarkerOptions, locations){
     },
     filter: function(feature, layer) {
       return feature.properties.featurecla === "Admin-0 capital"
+    },
+    onEachFeature: function(feature, layer){
+      layer.bindTooltip(
+        '<h1>'+feature.properties.name+'</h1>'+
+          '<p>Rank max: '+feature.properties.rank_max+'</p>'+
+          '<p>Rank min: '+feature.properties.rank_min+'</p>'+
+          '<p>Population max: '+feature.properties.pop_max+'</p>'+
+          '<p>Population min: '+feature.properties.pop_min+'</p>'+
+          '<p>Population other: '+feature.properties.pop_other+'</p>'
+      )
     }
   }).addTo(this.mymap)
 }
