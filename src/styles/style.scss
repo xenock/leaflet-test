@@ -1,6 +1,8 @@
 $main-blue: #1181fb;
 $lighter-blue: #419afc;
 
+@import './side-bar.scss';
+
 body {
   padding: 0;
   margin: 0;
@@ -9,20 +11,7 @@ body {
   grid-template-columns: 5% 35% 60%;
 }
 
-.side-bar {
-  display: flex;
-  flex-direction: column;
-}
-
-.side-bar__option {
-  margin: 15px auto;
-}
-
 i.fa {
   font-size: 30px;
   color: white;
-}
-
-.side-bar {
-  background-color: $main-blue;
 }
