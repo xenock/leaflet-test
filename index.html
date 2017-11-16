@@ -34,13 +34,13 @@
       </article>
       <article class="painting-style">
         <header class="painting-style__header">
-          <button>2</button>
+          <button disabled>2</button>
           <h2>Style</h2>
           <p>CHANGE THE VISUALIZATION</p>
         </header>
-        <div>
-          <p>FILL</p>
-          <select class="painting-style__fill" id="painting-style__fill" >
+        <div class="painting-style__fill">
+          <p class="paiting-style__fill-label">FILL</p>
+          <select  class="paiting-style__fill-options" id="painting-style__fill" >
             <option value="#A52A2A">Brown</option>
             <option value="#DEB887">BurlyWood</option>
             <option value="#5F9EA0">CadetBlue</option>
@@ -53,9 +53,9 @@
             <option value="#00FFFF">Cyan</option>
           </select>
         </div>
-        <div>
-          <p>STROKE</p>
-          <select class="painting-style__stroke" id="painting-style__stroke" >
+        <div class="painting-style__stroke">
+          <p class="painting-style__stroke-label">STROKE</p>
+          <select class="painting-style__stroke-options" id="painting-style__stroke" >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -64,9 +64,9 @@
           </select>
         </div>
       </article>
-      <div>
-        <p>BLENDING</p>
-        <select class="painting-style__blending" id="painting-style__blending" >
+      <div class="painting-style__blending">
+        <p class="painting-style__blending-label">BLENDING</p>
+        <select class="painting-style__blending-options" id="painting-style__blending" >
           <option value="multiply">multiply</option>
           <option value="">2</option>
           <option value="">3</option>
@@ -74,8 +74,10 @@
           <option value="">5</option>
         </select>
       </div>
-      <label for="">labels</label>
-      <input class="painting-style__labels" id="painting-style__labels" type="checkbox" checked/>
+      <div class="painting-style__labels">
+        <input class="painting-style__labels-option" id="painting-style__labels" type="checkbox" checked/>
+        <label class="painting-style__labels-label"for="">labels</label>
+      </div>
     </section>
     <section id="mapid"></section>
     <script src="bundle.js"></script>
