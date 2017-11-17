@@ -4,11 +4,6 @@ import { eu } from './country-shortnames.js'
 import { cartoDark } from './leaflet-tiles.js'
 import { populatedPlaces } from './data-queries.js'
 
-var eumap = new Map(
-  cartoDark,
-  { coordinates: [40.420581,-3.708136], zoom: 6 },
-  populatedPlaces
-)
 var geojsonMarkerOptions = {
   radius: 10,
   fillColor: "red",
@@ -17,6 +12,13 @@ var geojsonMarkerOptions = {
   opacity: 1,
   fillOpacity: 0.8
 }
+
+var eumap = new Map(
+  cartoDark,
+  { coordinates: [40.420581,-3.708136], zoom: 6 },
+  populatedPlaces,
+  geojsonMarkerOptions
+)
 eumap.init(geojsonMarkerOptions)
 
 window.onload = function(){
@@ -27,18 +29,12 @@ window.onload = function(){
 
   color.addEventListener('change', function(){
     var selectedColor = color.options[color.selectedIndex].value
-    var points = document.querySelectorAll('path.leaflet-interactive')
-    points.forEach(function(point){
-      point.setAttribute('fill', selectedColor)
-    })
+    eumap.changeMarkerFill(selectedColor)
   })
 
   stroke.addEventListener('change', function(){
     var selectedStroke = stroke.options[stroke.selectedIndex].value
-    var points = document.querySelectorAll('path.leaflet-interactive')
-    points.forEach(function(point){
-      point.setAttribute('stroke-width', selectedStroke)
-    })
+    eumap.changeMarkerStroke(selectedStroke)
   })
 
   labels.addEventListener('change', function(){
