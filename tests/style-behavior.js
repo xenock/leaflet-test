@@ -4,7 +4,7 @@ module.exports = {
     client.waitForElementPresent('path.leaflet-interactive', 3000)
     client.expect.element('path.leaflet-interactive').to.be.present
     client.getAttribute('path.leaflet-interactive', 'fill', function(result){
-      this.assert.equal(result.value, "#A52A2A")
+      this.assert.equal(result.value, "red")
     })
     client.click('#painting-style__fill')
     client.waitForElementVisible("option[value='#DEB887']", 1000)
