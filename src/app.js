@@ -9,7 +9,15 @@ var eumap = new Map(
   { coordinates: [40.420581,-3.708136], zoom: 6 },
   populatedPlaces
 )
-eumap.init()
+var geojsonMarkerOptions = {
+  radius: 10,
+  fillColor: "red",
+  color: "#000",
+  weight: 1,
+  opacity: 1,
+  fillOpacity: 0.8
+}
+eumap.init(geojsonMarkerOptions)
 
 window.onload = function(){
   var color = document.getElementById('painting-style__fill')

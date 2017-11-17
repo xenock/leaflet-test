@@ -5,10 +5,10 @@ function Map(tile, initValues, query){
   this.zoom = initValues.zoom || 0
 }
 
-Map.prototype.init = function(){
+Map.prototype.init = function(geojsonMarkerOptions){
   this._initMap()
   this._setTileLayer()
-  this._getData()
+  this._getData(geojsonMarkerOptions)
 }
 
 Map.prototype._initMap = function(){
@@ -19,26 +19,19 @@ Map.prototype._setTileLayer = function(){
   L.tileLayer(this.tileSrc, {maxZoom: 18,id: 'mapbox.dark'}).addTo(this.mymap)
 }
 
-Map.prototype._getData = function(){
+Map.prototype._getData = function(geojsonMarkerOptions){
   var that = this
-  fetch(this.query).then(function(response){
-    if(response.status !== 200){
-      console.log('problem ', response.status)
-      return
-    }
-    response.json().then(function(data){
-      var geojsonMarkerOptions = {
-        radius: 10,
-        fillColor: "red",
-        color: "#000",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
+  fetch(this.query)
+    .then(function(response){
+      if(response.status !== 200){
+        console.log('problem ', response.status)
+        return
       }
-      that.capitals = that._loadData(data, geojsonMarkerOptions)
-      that.capitals.addTo(that.mymap)
+      response.json().then(function(data){
+        that.capitals = that._loadData(data, geojsonMarkerOptions)
+        that.capitals.addTo(that.mymap)
+      })
     })
-  })
     .catch(function(err){
       console.log('Fetch err ', err)
     })
@@ -57,6 +50,7 @@ Map.prototype._loadData = function(data, geojsonMarkerOptions){
 Map.prototype._filterCapitals = function(feature, layer) {
   return feature.properties.featurecla === "Admin-0 capital"
 }
+
 Map.prototype._bindTooltips = function(feature, layer){
   layer.bindTooltip(
     '<h1>'+feature.properties.name+'</h1>'+
