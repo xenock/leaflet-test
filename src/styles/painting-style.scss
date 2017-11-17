@@ -1,9 +1,13 @@
-.painting-style__stroke {
-  display: flex;
-  flex-direction: row;
-}
+.painting-style {
 
-.painting-style__stroke-options {
-  width: 150px;
-  height: 35px;
+  &__select {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__stroke-options {
+    width: 150px;
+    height: 35px;
+  }
+
 }

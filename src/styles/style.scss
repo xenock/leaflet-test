@@ -1,9 +1,12 @@
 $main-blue: #1181fb;
 $lighter-blue: #419afc;
 
+
+@import '../../node_modules/normalize-scss/sass/normalize/_import-now.scss';
 @import './side-bar.scss';
 @import './mistery-section.scss';
 @import './painting-style.scss';
+
 body {
   padding: 0;
   margin: 0;
