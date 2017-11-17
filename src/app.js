@@ -9,7 +9,7 @@ eumap.init()
 
 var geojsonMarkerOptions = {
   radius: 10,
-  fillColor: "#A52A2A",
+  fillColor: "red",
   color: "#000",
   weight: 1,
   opacity: 1,
