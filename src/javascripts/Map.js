@@ -1,8 +1,8 @@
 function Map(tile, initValues, query, markerOptions){
   this.tileSrc = tile || 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
   this.query = query
-  this.coordinates = initValues.coordinates
-  this.zoom = initValues.zoom
+  this.coordinates = initValues.coordinates === undefined ? [0,0] : initValues.coordinates
+  this.zoom = initValues.zoom === undefined ? 2 : initValues.zoom
   this.markerOptions = markerOptions
 }
 
