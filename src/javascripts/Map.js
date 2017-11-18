@@ -76,4 +76,9 @@ Map.prototype._bindTooltips = function(feature, layer){
   )
 }
 
+Map.prototype.toggleTooltips = function(tooltipEnabled){
+  var tooltipLayer = document.querySelectorAll('.leaflet-tooltip-pane')[0]
+  tooltipLayer.style = !tooltipEnabled? 'display: none' : ''
+}
+
 module.exports = { Map }

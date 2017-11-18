@@ -25,7 +25,6 @@ window.onload = function(){
   var color = document.getElementById('painting-style__fill')
   var stroke = document.getElementById('painting-style__stroke')
   var labels = document.getElementById('painting-style__labels')
-  var tooltipLayer = document.querySelectorAll('.leaflet-tooltip-pane')[0]
 
   color.addEventListener('change', function(){
     var selectedColor = color.options[color.selectedIndex].value
@@ -38,6 +37,6 @@ window.onload = function(){
   })
 
   labels.addEventListener('change', function(){
-    tooltipLayer.style = !labels.checked ? 'display: none' : ''
+    eumap.toggleTooltips(labels.checked)
   })
 }
