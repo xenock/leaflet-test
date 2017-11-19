@@ -1,11 +1,60 @@
 .painting-style {
+  padding: 0 40px;
 
-  &__select {
-    display: flex;
-    flex-direction: row;
+  &__body {
+    padding-left: 50px;
   }
 
-  &__stroke-options {
+  @mixin flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  @mixin basic-labels {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 14px;
+  }
+  &__title {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    margin: 0 0 0 10px;
+  }
+
+  &__subtitle {
+    @include basic-labels;
+    color: grey;
+    margin-top: 10px;
+  }
+
+  &__fill-label, &__stroke-label, &__blending-label, &__labels-label {
+    @include basic-labels;
+  }
+
+  &__step {
+    @include flex-row;
+  }
+
+  &__step-number {
+    height: 40px;
+    width: 40px;
+    box-sizing: border-box;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background: white;
+  }
+
+  &__select {
+    @include flex-row;
+    justify-content: space-between;
+    height: 45px;
+  }
+
+  &__labels {
+    @include flex-row;
+    height: 45px;
+  }
+
+  &__stroke-options, &__fill-options, &__blending-options {
     width: 150px;
     height: 35px;
   }

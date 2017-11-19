@@ -21,63 +21,74 @@
     <aside class="side-bar">
       <div class="side-bar__carto-logo">
         <svg width="100" height="100">
-        <circle cx="50" cy="50" r="20" stroke="#419afc" stroke-width="18" fill="white" />
-        Sorry, your browser does not support inline SVG.
+          <circle cx="50" cy="50" r="20" stroke="#419afc" stroke-width="18" fill="white" />
+          Sorry, your browser does not support inline SVG.
         </svg>
       </div>
       <div class="side-bar__option"><i class="fa fa-pencil" aria-hidden="true"></i></div>
       <div class="side-bar__option"><i class="fa fa-sliders" aria-hidden="true"></i></div>
     </aside>
+
     <section class="steps">
+
       <article class="painting-options">
         <p>Mystery content</p>
       </article>
+
       <article class="painting-style">
+
         <header class="painting-style__header">
-          <button disabled>2</button>
-          <h2>Style</h2>
-          <p>CHANGE THE VISUALIZATION</p>
+          <div class="painting-style__step">
+            <button class="painting-style__step-number" disabled>2</button>
+            <h2 class="painting-style__title">Style</h2>
+          </div>
         </header>
-        <div class="painting-style__select">
-          <p class="paiting-style__fill-label">FILL</p>
-          <select  class="painting-style__fill-options" id="painting-style__fill" >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
-        </div>
-        <div class="painting-style__select">
-          <p class="painting-style__stroke-label">STROKE</p>
-          <select class="painting-style__stroke-options" id="painting-style__stroke" >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+
+        <div class="painting-style__body">
+          <div>
+            <p class="painting-style__subtitle">CHANGE THE VISUALIZATION</p>
+          </div>
+          <div class="painting-style__select">
+            <p class="painting-style__fill-label">FILL</p>
+            <select  class="painting-style__fill-options" id="painting-style__fill" >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          <div class="painting-style__select">
+            <p class="painting-style__stroke-label">STROKE</p>
+            <select class="painting-style__stroke-options" id="painting-style__stroke" >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div class="painting-style__select">
+            <p class="painting-style__blending-label">BLENDING</p>
+            <select class="painting-style__blending-options" id="painting-style__blending" >
+              <option value="multiply">multiply</option>
+              <option value="">2</option>
+              <option value="">3</option>
+              <option value="">4</option>
+              <option value="">5</option>
+            </select>
+          </div>
+          <div class="painting-style__labels">
+            <input class="painting-style__labels-option" id="painting-style__labels" type="checkbox" checked/>
+            <label class="painting-style__labels-label"for="">labels</label>
+          </div>
         </div>
       </article>
-      <div class="painting-style__select">
-        <p class="painting-style__blending-label">BLENDING</p>
-        <select class="painting-style__blending-options" id="painting-style__blending" >
-          <option value="multiply">multiply</option>
-          <option value="">2</option>
-          <option value="">3</option>
-          <option value="">4</option>
-          <option value="">5</option>
-        </select>
-      </div>
-      <div class="painting-style__labels">
-        <input class="painting-style__labels-option" id="painting-style__labels" type="checkbox" checked/>
-        <label class="painting-style__labels-label"for="">labels</label>
-      </div>
     </section>
     <section id="mapid"></section>
     <script src="bundle.js"></script>
